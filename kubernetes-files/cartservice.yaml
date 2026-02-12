@@ -29,6 +29,7 @@ spec:
           privileged: false
           readOnlyRootFilesystem: true
         image: 242201296943.dkr.ecr.us-east-1.amazonaws.com/cartservice:1
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 7070
         env:
@@ -63,3 +64,4 @@ spec:
   - name: grpc
     port: 7070
     targetPort: 7070
+
