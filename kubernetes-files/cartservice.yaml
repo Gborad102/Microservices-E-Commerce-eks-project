@@ -13,6 +13,8 @@ spec:
         app: cartservice
     spec:
       serviceAccountName: default
+      imagePullSecrets:
+      - name: ecr-secret
       terminationGracePeriodSeconds: 5
       securityContext:
         fsGroup: 1000
@@ -64,4 +66,5 @@ spec:
   - name: grpc
     port: 7070
     targetPort: 7070
+
 
