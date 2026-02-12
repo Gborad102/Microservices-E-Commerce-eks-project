@@ -3,8 +3,8 @@ pipeline {
 
     environment {
         GIT_REPO_NAME = "Microservices-E-Commerce-eks-project"
-        GIT_EMAIL = "Yaswanth.arumulla@gmail.com"
-        GIT_USER_NAME = "arumullayaswanth"
+        GIT_EMAIL = "ganesh.borade10297@gmail.com"
+        GIT_USER_NAME = "Gborad102"
         IMAGE_NAME = "adservice"
         REPO_URL = "101764084921.dkr.ecr.us-east-1.amazonaws.com/adservice"
         YAML_FILE = "adservice.yaml"
@@ -35,13 +35,21 @@ pipeline {
             }
         }
 
-        stage("ECR Image Pushing") {
+        stage("ECR Login & Push") {
             steps {
-                script {
+
+                withCredentials([[
+                    $class: 'AmazonWebServicesCredentialsBinding',
+                    credentialsId: 'aws-ecr-creds'
+                ]]) {
+
                     sh '''
-                    aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 101764084921.dkr.ecr.us-east-1.amazonaws.com
-                    docker tag adservice:latest 101764084921.dkr.ecr.us-east-1.amazonaws.com/adservice:${BUILD_NUMBER}
-                    docker push 101764084921.dkr.ecr.us-east-1.amazonaws.com/adservice:${BUILD_NUMBER}
+                    aws ecr get-login-password --region $AWS_REGION \
+                    | docker login --username AWS --password-stdin 101764084921.dkr.ecr.us-east-1.amazonaws.com
+
+                    docker tag adservice:latest $REPO_URL:${BUILD_NUMBER}
+
+                    docker push $REPO_URL:${BUILD_NUMBER}
                     '''
                 }
             }
