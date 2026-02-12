@@ -8,6 +8,7 @@ pipeline {
         IMAGE_NAME = "adservice"
         REPO_URL = "101764084921.dkr.ecr.us-east-1.amazonaws.com/adservice"
         YAML_FILE = "adservice.yaml"
+        AWS_REGION = "us-east-1"
     }
 
     stages {
