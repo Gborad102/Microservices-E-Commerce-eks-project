@@ -29,6 +29,7 @@ spec:
           privileged: false
           readOnlyRootFilesystem: true
         image: 101764084921.dkr.ecr.us-east-1.amazonaws.com/adservice:10
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9555
         env:
@@ -64,3 +65,4 @@ spec:
   - name: grpc
     port: 9555
     targetPort: 9555
+
