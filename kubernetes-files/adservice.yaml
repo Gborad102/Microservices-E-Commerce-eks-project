@@ -13,6 +13,8 @@ spec:
         app: adservice
     spec:
       serviceAccountName: default
+      imagePullSecrets:
+      - name: ecr-secret
       terminationGracePeriodSeconds: 5
       securityContext:
         fsGroup: 1000
@@ -65,4 +67,5 @@ spec:
   - name: grpc
     port: 9555
     targetPort: 9555
+
 
