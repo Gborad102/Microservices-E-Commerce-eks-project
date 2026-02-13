@@ -13,6 +13,8 @@ spec:
         app: recommendationservice
     spec:
       serviceAccountName: default
+      imagePullSecrets:
+      - name: ecr-secret
       terminationGracePeriodSeconds: 5
       securityContext:
         fsGroup: 1000
@@ -29,6 +31,7 @@ spec:
           privileged: false
           readOnlyRootFilesystem: true
         image: 242201296943.dkr.ecr.us-east-1.amazonaws.com/recommendationservice:1
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
         readinessProbe:
@@ -66,3 +69,4 @@ spec:
   - name: grpc
     port: 8080
     targetPort: 8080
+
