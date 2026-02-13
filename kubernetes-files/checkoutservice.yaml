@@ -13,6 +13,8 @@ spec:
         app: checkoutservice
     spec:
       serviceAccountName: default
+      imagePullSecrets:
+      - name: ecr-secret
       securityContext:
         fsGroup: 1000
         runAsGroup: 1000
@@ -74,4 +76,5 @@ spec:
   - name: grpc
     port: 5050
     targetPort: 5050
+
 
