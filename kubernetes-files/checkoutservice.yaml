@@ -27,7 +27,7 @@ spec:
                 - ALL
             privileged: false
             readOnlyRootFilesystem: true
-          image: 242201296943.dkr.ecr.us-east-1.amazonaws.com/checkoutservice:1
+          image: 101764084921.dkr.ecr.us-east-1.amazonaws.com/checkoutservice:3
           imagePullPolicy: Always
           imagePullSecrets:
           - name: ecr-secret
