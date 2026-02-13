@@ -13,6 +13,8 @@ spec:
         app: currencyservice
     spec:
       serviceAccountName: default
+      imagePullSecrets:
+      - name: ecr-secret
       terminationGracePeriodSeconds: 5
       securityContext:
         fsGroup: 1000
@@ -29,6 +31,8 @@ spec:
           privileged: false
           readOnlyRootFilesystem: true
         image: 242201296943.dkr.ecr.us-east-1.amazonaws.com/currencyservice:1
+        imagePullPolicy: Always
+        
         ports:
         - name: grpc
           containerPort: 7000
@@ -63,3 +67,4 @@ spec:
   - name: grpc
     port: 7000
     targetPort: 7000
+
