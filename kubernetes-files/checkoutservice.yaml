@@ -28,6 +28,9 @@ spec:
             privileged: false
             readOnlyRootFilesystem: true
           image: 242201296943.dkr.ecr.us-east-1.amazonaws.com/checkoutservice:1
+          imagePullPolicy: Always
+          imagePullSecrets:
+          - name: ecr-secret
           ports:
           - containerPort: 5050
           readinessProbe:
@@ -71,3 +74,4 @@ spec:
   - name: grpc
     port: 5050
     targetPort: 5050
+
