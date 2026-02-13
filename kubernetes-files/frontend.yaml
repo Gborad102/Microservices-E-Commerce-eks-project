@@ -15,6 +15,9 @@ spec:
         sidecar.istio.io/rewriteAppHTTPProbers: "true"
     spec:
       serviceAccountName: default
+      imagePullSecrets:
+      - name: ecr-secret
+      
       securityContext:
         fsGroup: 1000
         runAsGroup: 1000
@@ -30,6 +33,7 @@ spec:
             privileged: false
             readOnlyRootFilesystem: true
           image: 242201296943.dkr.ecr.us-east-1.amazonaws.com/frontend:1
+          imagePullPolicy: Always
           ports:
           - containerPort: 8080
           readinessProbe:
@@ -108,3 +112,4 @@ spec:
   - name: http
     port: 80
     targetPort: 8080
+
