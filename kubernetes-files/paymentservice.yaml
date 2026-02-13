@@ -13,6 +13,8 @@ spec:
         app: paymentservice
     spec:
       serviceAccountName: default
+      imagePullSecrets:
+      - name: ecr-secret
       terminationGracePeriodSeconds: 5
       securityContext:
         fsGroup: 1000
@@ -29,6 +31,7 @@ spec:
           privileged: false
           readOnlyRootFilesystem: true
         image: 242201296943.dkr.ecr.us-east-1.amazonaws.com/paymentservice:1
+        imagePullPolicy: Always
         ports:
         - containerPort: 50051
         env:
@@ -62,3 +65,4 @@ spec:
   - name: grpc
     port: 50051
     targetPort: 50051
+
