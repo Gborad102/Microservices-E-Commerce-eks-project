@@ -16,6 +16,8 @@ spec:
         sidecar.istio.io/rewriteAppHTTPProbers: "true"
     spec:
       serviceAccountName: default
+      imagePullSecrets:
+      - name: ecr-secret
       terminationGracePeriodSeconds: 5
       restartPolicy: Always
       securityContext:
@@ -43,6 +45,7 @@ spec:
           privileged: false
           readOnlyRootFilesystem: true
         image: 242201296943.dkr.ecr.us-east-1.amazonaws.com/loadgenerator:1
+        imagePullPolicy: Always
         env:
         - name: FRONTEND_ADDR
           value: "frontend:80"
@@ -56,6 +59,7 @@ spec:
           privileged: false
           readOnlyRootFilesystem: true
         image: 242201296943.dkr.ecr.us-east-1.amazonaws.com/loadgenerator:1
+        imagePullPolicy: Always
         env:
         - name: FRONTEND_ADDR
           value: "frontend:80"
@@ -68,3 +72,4 @@ spec:
           limits:
             cpu: 500m
             memory: 512Mi
+
